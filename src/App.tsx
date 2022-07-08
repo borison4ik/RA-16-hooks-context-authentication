@@ -1,25 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Layout, Typography } from 'antd';
+
+import { Logo } from './components/Logo';
+import { UserProfile } from './components/UserProfile';
+import { PageContent } from './components/PageContent';
+import { AuthProvider } from './components/AuthProvider';
+
+import { DATA } from './data';
+import './app.scss';
+
+const { Header, Content } = Layout;
+const { Title, Text } = Typography;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Layout>
+        <Header className='app-header'>
+          <Title level={4}>
+            <Text type='secondary'>{DATA.task.title}</Text>
+          </Title>
+        </Header>
+        <div className='auth-header'>
+          <Logo />
+          <UserProfile />
+        </div>
+        <Content className='app-content'>
+          <PageContent />
+        </Content>
+      </Layout>
+    </AuthProvider>
   );
 }
 
